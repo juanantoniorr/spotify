@@ -8,10 +8,15 @@ import { SpotifyService } from '../../services/spotify.service';
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
- paises: any[] = [];
+ nuevasCanciones: any[] = [];
 
   constructor(private http: HttpClient, spotifyService: SpotifyService) {
-    console.log(spotifyService.getNewReleases());
+  spotifyService.getNewReleases().subscribe((data: any) => {
+console.log(data.albums.items);
+this.nuevasCanciones = data.albums.items;
+
+
+  });
 
    }
 
